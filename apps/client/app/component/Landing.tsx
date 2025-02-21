@@ -19,7 +19,7 @@ export default function Landing() {
     const [newPassword, setNewPassword] = useState("")
 
     const router = useRouter()
-    const { socket, setUser, user } = useWebSocket()
+    const { socket, setUser} = useWebSocket()
 
     useEffect(() => {
         if (!socket) return

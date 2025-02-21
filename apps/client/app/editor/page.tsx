@@ -1,16 +1,14 @@
 "use client"
 import React, { useEffect, useRef, useState } from 'react'
 import Editor from '@monaco-editor/react'
+import { editor } from "monaco-editor";
 import { useWebSocket } from '../context/WebSocketContext';
 
-
 const Code = () => {
-    const editorRef = useRef<any>(null);
+    const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null);
     const [codeing, setCodeing] = useState<string>('');
     const [language, setLanguage] = useState<string>('javascript');
     const { socket,user,setUser } = useWebSocket();
-
-    
 
     useEffect(() => {
         if (!socket) return;
@@ -29,7 +27,7 @@ const Code = () => {
             socket.onmessage = null; 
         };
         
-    }, [socket]);
+    }, [socket,setUser]);
 
     const handleEdit = (newCode: string | undefined) => {
         if (!newCode) return;
