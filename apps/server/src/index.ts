@@ -5,13 +5,10 @@ import bcrypt from "bcryptjs";
 
 const prisma = new PrismaClient();
 
-const server = http.createServer((req, res) => {
-    console.log("Server created");
-});
+const server = http.createServer();
 
 const ws = new WebSocketServer({ server });
 const rooms = new Map<number, Set<{ socket: WebSocket, email: string }>>();
-
 
 ws.on("connection", (socket) => {
     let userRoom: number | null = null;
