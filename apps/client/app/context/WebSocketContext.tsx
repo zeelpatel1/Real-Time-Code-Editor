@@ -16,7 +16,7 @@ export const WebSocketProvider = ({ children }: { children: React.ReactNode }) =
     const [user, setUser] = useState<string[]>([]);
 
     useEffect(() => {
-        const ws = new WebSocket('ws://localhost:4000')
+        const ws = new WebSocket(`${process.env.BACKEND_URL}`)
 
         ws.onopen = () => setSocket(ws)
         ws.onclose = () => console.log("WebSocket Disconnected");
